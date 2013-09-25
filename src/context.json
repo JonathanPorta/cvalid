@@ -1,0 +1,26 @@
+{"attributes":{},"entities":{
+	"User": {
+		"key": "user_id",
+		"properties": {
+			"user_id": {
+				"type": "string"
+			},
+			"card_number": {
+				"type": "string"
+			},
+			"pin": {
+				"type": "string"
+			}
+		},
+		"relationships": {}
+	},
+	"Vendor": {
+		"key": "vendor_id",
+		"properties": {
+			"vendor_id": {
+				"type": "string"
+			}
+		},
+		"relationships": {}
+	}
+}}
