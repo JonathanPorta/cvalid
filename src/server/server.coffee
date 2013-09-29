@@ -11,6 +11,22 @@ nconf.argv()
 
 JEFRi = require "jefri"
 Stores = require "jefri-stores"
+Redis = require "redis"
+redisClient = Redis.createClient()
+
+redisAdapter = {
+	get : (data, cb) ->
+		key = data[0]['_type']
+		redisClient.get key, (e, data) ->
+			console.log data
+			cb JSON.parse data
+
+	persist : (entities, cb) ->
+		key = entities[0]['_type']
+		redisClient.set key, JSON.stringify entities
+		console.log entities
+		cb entities
+}
 
 runtime = new JEFRi.Runtime ""
 store = new JEFRi.Stores.FileStore runtime: runtime
@@ -25,13 +41,14 @@ app =
 			res.sendfile path.join root, "build", "context.json"
 
 		.post /\/(get|persist)/, (req, res)->
+			responseBody = {"metta":{}, "entities":[]}
 			console.log 'get/persist', req, res
 			method = req.params[0]
-			transaction = new JEFRi.Transaction()
-			transaction.add req.body.entities, true
-			store[method](transaction)
-			.then (gotten)->
-				res.jsonp gotten
+
+			redisAdapter[method](req.body.entities, (results)->
+				responseBody["entities"] = results
+				res.jsonp responseBody
+			)
 
 		.get '/bower/:module/:file', (req, res) ->
 			res.set "content-type", "text/javascript"
