@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/bin/npm', 'start' ]
+2 info using npm@1.2.17
+3 info using node@v0.10.12
+4 verbose read json /home/portaj/devel/cvalid/package.json
+5 verbose run-script [ 'prestart', 'start', 'poststart' ]
+6 info prestart cvalid@0.0.0
+7 info start cvalid@0.0.0
+8 verbose unsafe-perm in lifecycle true
+9 silly exec sh "-c" "node src/server/start.js"
+10 silly sh,-c,node src/server/start.js,/home/portaj/devel/cvalid spawning
+11 info cvalid@0.0.0 Failed to exec start script
+12 error cvalid@0.0.0 start: `node src/server/start.js`
+12 error `sh "-c" "node src/server/start.js"` failed with 143
+13 error Failed at the cvalid@0.0.0 start script.
+13 error This is most likely a problem with the cvalid package,
+13 error not with npm itself.
+13 error Tell the author that this fails on your system:
+13 error     node src/server/start.js
+13 error You can get their info via:
+13 error     npm owner ls cvalid
+13 error There is likely additional logging output above.
+14 error System Linux 2.6.32-042stab079.5
+15 error command "node" "/usr/bin/npm" "start"
+16 error cwd /home/portaj/devel/cvalid
+17 error node -v v0.10.12
+18 error npm -v 1.2.17
+19 error code ELIFECYCLE
+20 verbose exit [ 1, true ]

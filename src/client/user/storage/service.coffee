@@ -38,7 +38,7 @@ angular.module('cvalid').service "storage", ($location, $q, $http)->
 		_request: (action, trans, cb)->
 			params = {
 				method : 'POST'
-				url    : 'http://localhost:3000/'+action
+				url    : 'http://dev.rurd4me.com:3000/'+action
 				data   : trans
 			}
 
